@@ -39,6 +39,7 @@ Route::group(['middleware'=>'web'],function(){
     Route::get('/Adminbuy','Medicine@Admin_Buy_show');
 
     Route::post('/Adminbuy/payment','Medicine@Admin_Buy_pay');
+    Route::get('/listMedicine','Medicine@Admin_list');
 
 });
 
