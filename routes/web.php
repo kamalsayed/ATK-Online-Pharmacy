@@ -32,6 +32,14 @@ Route::group(['middleware'=>'web'],function(){
 
     Route::post('/loginn','login@logout');
 
+    Route::get('/AddMedicine','Medicine@index');
+
+    Route::post('/AddMedicine/store','Medicine@store');
+
+    Route::get('/Adminbuy','Medicine@Admin_Buy_show');
+
+    Route::post('/Adminbuy/payment','Medicine@Admin_Buy_pay');
+
 });
 
 
