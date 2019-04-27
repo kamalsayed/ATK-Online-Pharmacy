@@ -26,7 +26,7 @@
         <a href="{{url('/newvendor')}}" ><i class="material-icons">person</i> Add Vendor</a>
         <a href="?page=Get Report" ><i class="material-icons">cloud</i> Get Report</a>
         <a href="?page=Buy Medicine" ><i class="material-icons">local_shipping</i> Buy Medicine</a>
-        <a href="?page=List Medicines"><i class="material-icons">menu</i> List Medicines</a>
+        <a href="{{url('/listMedicine')}}"><i class="material-icons">menu</i> List Medicines</a>
         <a href="?page=List_feed_back"><i class="material-icons">menu</i> FeedBacks</a>
         <a href="?page=Cancel Buying" ><i class="material-icons">close</i> Cancel Buying</a>
         <a href="?page=charge" > <i class="material-icons">fingerprint</i> charge </a>
