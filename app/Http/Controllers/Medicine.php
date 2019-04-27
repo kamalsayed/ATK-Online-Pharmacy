@@ -101,5 +101,9 @@ class Medicine extends Controller
 
         return view('AdminBuy',compact('data'));
     }
+    public function Admin_list(){
+        $list = DB::select('select * from medicines where owner = ?',[1]);
+        return view('listMedicine',compact('list'));
+    }
 
 }
