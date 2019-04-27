@@ -45,25 +45,34 @@ class AddVendor_C extends Controller
             ,'reg_password'=>'required|min:6|max:20'
         ]);
 
+        try {
+            $user = Add_V::getInstance();
+            $user->name = $request->reg_name;
+            $user->type = 3;
+            $user->email = $request->reg_email;
+            if ($request->reg_password == $request->reg_password_confirm) {
+                $user->password = Hash::make($request->reg_password);
+            } else {
+                return view('layout.AdminInterface');
+                //return '<ul class="list-group"><li class="list-group-item">"Check that password is typically like confirm password !"</li></ul>';
 
-        $user = new Add_V();
-        $user->name=$request->reg_name;
-        $user->type=3;
-        $user->email=$request->reg_email;
-        if($request->reg_password==$request->reg_password_confirm){
-            $user->password=Hash::make($request->reg_password);
-        }
-        else{
-            return '<ul class="list-group">"Check that password is typically like confirm password !"<li class="list-group-item"></li></ul>';
+            }
+            $now = Carbon::now();
+            $user->email_verified_at = $now;
+            $user->created_at = $now;
+            $user->updated_at = $now;
+            $user->remember_token = 'vendor';
+            $user->save();
+           // print ('<ul class="list-group"><li class="list-group-item">Sucsessfully Added</li></ul>');
+            return view('layout.AdminInterface');
 
         }
-        $now=Carbon::now();
-        $user->email_verified_at=$now;
-        $user->created_at=$now;
-        $user->updated_at=$now;
-        $user->remember_token='vendor';
-        $user->save();
-        return '<ul class="list-group"><li class="list-group-item">Sucsessfully Added</li></ul>';
+        catch (Exception $e){
+            report($e);
+            return '<ul class="list-group"><li class="list-group-item">"Error!! try another email!"</li></ul>';
+            return view('layout.AdminInterface');
+        }
+
     }
 
     /**
