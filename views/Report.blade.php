@@ -5,7 +5,7 @@
 
     <html>
     <div class="text-center" style="padding:50px 0">
-        <div class="logo">List medicine</div>
+        <div class="logo">Report Result</div>
         <head>
 
             <style>
@@ -30,37 +30,51 @@
             </style>
         </head>
         <body>
-
+        <div class="container" style="margin-top: 5%;">
+        <form action="{{url('/ReportDownload')}}" method="post">
+            {{csrf_field()}}
         <table id="customers">
             <tr>
-                <th>Quantity</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Expire Date</th>
-                <th>Brand</th>
-                <th>Price</th>
-                <th >Production Date</th>
-                <th >description</th>
+                <th style="text-align: center">Sellers</th>
             </tr>
-            <?php
-            foreach($list as $table){
-                echo"
-            <tr>
-            <td>{$table->quantity}</td>
-            <td>{$table->name}</td>
-            <td>{$table->type}</td>
-            <td>{$table->expire_date}</td>
-            <td>{$table->brand}</td>
-            <td>{$table->price}</td>
-            <td>{$table->production_date}</td>
-            <td>{$table->description}</td>
-            </tr>";
-            }
-            ?>
 
+            @for($i=0;$i<count($sellers);$i++)
+                <tr>
+                    <td>{{($i+1) . " - ". $sellers[$i]->name}}</td>
+                </tr>
+            @endfor
+        </table>
+        <table id ="customers">
+            <tr>
+
+                <th style="text-align: center">Most Selled</th>
+
+            </tr>
+            @for($i=0;$i<count($most);$i++)
+
+                <tr>
+                    <td>{{($i+1) . " - ".   $most[$i]->name}}</td>
+                </tr>
+            @endfor
 
         </table>
+        <table id ="customers">
+            <tr>
 
+                <th style="text-align: center">Best Customers</th>
+
+            </tr>
+            @for($i=0;$i<count($best);$i++)
+
+                <tr>
+                    <td>{{($i+1) . " - ".   $best[$i]->name}}</td>
+                </tr>
+            @endfor
+        </table>
+
+               <!-- <input type="submit" value="download" name="download"> -->
+            </form>
+        </div>
         </body>
     </div>
     </html>
@@ -75,4 +89,5 @@
         </div>
 
     @endif
+
 @endsection
